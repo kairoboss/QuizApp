@@ -1,18 +1,13 @@
-package com.kairat.quizapp;
+package com.kairat.quizapp.ui.activities.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kairat.quizapp.R;
 import com.kairat.quizapp.ui.adapters.MainPagerAdapter;
 import com.kairat.quizapp.ui.viewpager.MainViewPager;
 
@@ -36,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(3);
         viewPager.setPagingEnabled(false);
+
     }
 
     @Override

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.main.MainFragment" >
-
+    <data>
+        <variable
+            name="question"
+            type="com.kairat.quizapp.ui.fragments.main.MainFragment"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <TextView
-        android:id="@+id/page_name"
+        android:id="@+id/main_page_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quiz"
@@ -22,7 +27,7 @@
         android:id="@+id/iv_main"
         android:layout_width="50dp"
         android:layout_height="75dp"
-        app:layout_constraintTop_toBottomOf="@id/page_name"
+        app:layout_constraintTop_toBottomOf="@id/main_page_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:src="@drawable/main_logo"
@@ -55,7 +60,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginHorizontal="55dp"
-        android:layout_marginTop="17dp"/>
+        android:layout_marginTop="17dp" />
 
     <TextView
         android:id="@+id/category_text"
@@ -76,7 +81,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginHorizontal="67dp"
-        tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"
+        android:elevation="8dp"/>
 
     <TextView
         android:id="@+id/difficulty_text"
@@ -96,9 +102,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginHorizontal="67dp"
-        tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"
+        android:elevation="8dp"/>
 
     <Button
+        android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/difficulty_spinner"
@@ -106,8 +114,5 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="@string/start"
         android:layout_marginTop="64dp" />
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
