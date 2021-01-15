@@ -40,25 +40,25 @@
             android:id="@+id/first_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.correctAnswer}"
+            android:text='@{question.incorrectAnswers.size() == 3 ? question.correctAnswer : ""}'
             style="@style/VariantStyleButton" />
         <Button
             android:id="@+id/second_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswers.get(0)}"
+            android:text='@{question.incorrectAnswers.size() == 3 ? question.incorrectAnswers.get(0) : ""}'
             style="@style/VariantStyleButton" />
         <Button
             android:id="@+id/third_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswers.get(1)}"
+            android:text='@{question.incorrectAnswers.size() == 3 ? question.incorrectAnswers.get(1) : ""}'
             style="@style/VariantStyleButton" />
         <Button
             android:id="@+id/fourth_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswers.get(2)}"
+            android:text='@{question.incorrectAnswers.size() == 3 ? question.incorrectAnswers.get(2) : ""}'
             style="@style/VariantStyleButton" />
     </LinearLayout>
     <LinearLayout
@@ -76,13 +76,14 @@
             android:id="@+id/variant_yes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Yes"
+            android:text='@{question.incorrectAnswers.size() == 1 ? question.correctAnswer : ""}'
+
             style="@style/VariantStyleButton" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/variant_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No"
+            android:text='@{question.incorrectAnswers.size() == 1 ? question.incorrectAnswers.get(0).toString() : ""}'
             style="@style/VariantStyleButton"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
