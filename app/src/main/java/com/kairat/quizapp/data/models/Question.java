@@ -1,27 +1,37 @@
+
 package com.kairat.quizapp.data.models;
 
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Question {
-    private String type;
-    private String question;
-    private String correctAnswer;
-    private List<String> incorrectAnswer;
-    private String trueAnswer;
-    private String falseAnswer;
 
-    public Question(String type, String question, String correctAnswer, List<String> incorrectAnswer) {
-        this.type = type;
-        this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.incorrectAnswer = incorrectAnswer;
+    @SerializedName("category")
+    @Expose
+    private String category;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("difficulty")
+    @Expose
+    private String difficulty;
+    @SerializedName("question")
+    @Expose
+    private String question;
+    @SerializedName("correct_answer")
+    @Expose
+    private String correctAnswer;
+    @SerializedName("incorrect_answers")
+    @Expose
+    private List<String> incorrectAnswers = null;
+
+    public String getCategory() {
+        return category;
     }
 
-    public Question(String type, String question,String trueAnswer, String falseAnswer) {
-        this.type = type;
-        this.question = question;
-        this.trueAnswer = trueAnswer;
-        this.falseAnswer = falseAnswer;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getType() {
@@ -30,6 +40,14 @@ public class Question {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getQuestion() {
@@ -48,27 +66,12 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public List<String> getIncorrectAnswer() {
-        return incorrectAnswer;
+    public List<String> getIncorrectAnswers() {
+        return incorrectAnswers;
     }
 
-    public void setIncorrectAnswer(List<String> incorrectAnswer) {
-        this.incorrectAnswer = incorrectAnswer;
+    public void setIncorrectAnswers(List<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
     }
 
-    public String getTrueAnswer() {
-        return trueAnswer;
-    }
-
-    public void setTrueAnswer(String trueAnswer) {
-        this.trueAnswer = trueAnswer;
-    }
-
-    public String getFalseAnswer() {
-        return falseAnswer;
-    }
-
-    public void setFalseAnswer(String falseAnswer) {
-        this.falseAnswer = falseAnswer;
-    }
 }

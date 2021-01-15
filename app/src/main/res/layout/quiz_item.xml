@@ -36,29 +36,29 @@
         android:gravity="center"
         android:layout_marginVertical="20dp"
         >
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/first_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{question.correctAnswer}"
             style="@style/VariantStyleButton" />
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/second_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswer.get(0).toString()}"
+            android:text="@{question.incorrectAnswers.get(0)}"
             style="@style/VariantStyleButton" />
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/third_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswer.get(1).toString()}"
+            android:text="@{question.incorrectAnswers.get(1)}"
             style="@style/VariantStyleButton" />
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/fourth_var"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{question.incorrectAnswer.get(2).toString()}"
+            android:text="@{question.incorrectAnswers.get(2)}"
             style="@style/VariantStyleButton" />
     </LinearLayout>
     <LinearLayout

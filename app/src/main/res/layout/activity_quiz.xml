@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activities.quiz.QuizActivity">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kairat.quizapp.ui.activities.quiz.QuizViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,7 +28,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginBottom="77dp"
-            android:text="Skip"/>
+            android:text="@string/skip"/>
         <ImageView
             android:id="@+id/quiz_back_arrow"
             android:layout_width="wrap_content"

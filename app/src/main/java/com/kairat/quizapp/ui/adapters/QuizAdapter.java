@@ -19,11 +19,7 @@ import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
 
-    private List<Question> questions;
-
-    public QuizAdapter(List<Question> questions) {
-        this.questions = questions;
-    }
+    private List<Question> questions = new ArrayList<>();
 
     @NonNull
     @Override
@@ -35,6 +31,11 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
         holder.bind(questions.get(position));
+    }
+
+    public void addList(List<Question> questions){
+        this.questions.addAll(questions);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -60,4 +61,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
             }
         }
     }
+
+
 }
