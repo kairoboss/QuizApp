@@ -21,7 +21,6 @@ import android.widget.SeekBar;
 
 import com.kairat.quizapp.R;
 import com.kairat.quizapp.databinding.MainFragmentBinding;
-import com.kairat.quizapp.instruments.MOnSeekBarChangeListener;
 import com.kairat.quizapp.ui.activities.quiz.QuizActivity;
 
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
     private MainFragmentBinding binding;
     private int categoryId;
     private String difficulty;
+    private String categoryName;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -70,9 +70,10 @@ public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             i.putExtra("amount", Integer.valueOf(binding.questionsAmountValue.getText().toString()));
             i.putExtra("categoryId", categoryId);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("categoryName", categoryName);
             startActivity(i);
         });
-                spinners();
+        spinners();
     }
 
     private void spinners() {
@@ -80,6 +81,7 @@ public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 categoryId = position + 9;
+                categoryName = binding.categorySpinner.getSelectedItem().toString();
             }
 
             @Override
@@ -90,7 +92,11 @@ public class MainFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
         binding.difficultySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                difficulty = binding.difficultySpinner.getSelectedItem().toString();
+                if (binding.difficultySpinner.getSelectedItem().toString().equals("Any difficulty")) {
+                    difficulty = "";
+                } else {
+                    difficulty = binding.difficultySpinner.getSelectedItem().toString();
+                }
             }
 
             @Override
