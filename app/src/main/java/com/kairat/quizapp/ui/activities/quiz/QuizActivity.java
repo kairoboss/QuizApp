@@ -51,8 +51,8 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
     private void setUpRecyclerView() {
         QuizAdapter adapter = new QuizAdapter(this);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
-        manager.setSmoothScrollbarEnabled(true);
         binding.quizRecycler.setLayoutManager(manager);
+        binding.quizRecycler.setNestedScrollingEnabled(false);
         binding.quizRecycler.setAdapter(adapter);
        viewModel.loadQuestions(amount, category, difficulty.toLowerCase()).observe(this, adapter::addList);
        binding.questionsCount.setText("/"+ amount);
@@ -79,6 +79,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
         i.putExtra("difficulty", difficulty);
         i.putExtra("category", categoryName);
         startActivity(i);
+        finish();
     }
 
     private void scrollOnClick(QuizAdapter adapter, int pos) {

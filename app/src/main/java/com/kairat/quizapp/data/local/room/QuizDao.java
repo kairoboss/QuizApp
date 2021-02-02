@@ -9,16 +9,18 @@ import com.kairat.quizapp.data.models.Result;
 
 import java.util.List;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 @Dao
 public interface QuizDao {
 
-    @Insert
+    @Insert(onConflict = REPLACE)
     void addResult(Result result);
 
     @Delete
     void delete(Result result);
 
-    @Query("DELETE FROM resultTable ")
+    @Query("DELETE FROM resultTable")
     void clearHistory();
 
     @Query("SELECT * FROM resultTable")

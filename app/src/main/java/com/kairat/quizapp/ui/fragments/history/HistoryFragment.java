@@ -27,6 +27,8 @@ public class HistoryFragment extends Fragment {
 
     private HistoryViewModel mViewModel;
     private HistoryFragmentBinding binding;
+    HistoryAdapter historyAdapter = new HistoryAdapter();
+
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
@@ -51,9 +53,13 @@ public class HistoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.historyRecycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        HistoryAdapter historyAdapter = new HistoryAdapter();
         binding.historyRecycler.setAdapter(historyAdapter);
-        List<Result> results = new ArrayList<>(App.getDataBse().quizDao().getHistoryList());
-        historyAdapter.addList(results);
+        historyAdapter.addList(App.getDataBase().quizDao().getHistoryList());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        historyAdapter.notifyDataSetChanged();
     }
 }

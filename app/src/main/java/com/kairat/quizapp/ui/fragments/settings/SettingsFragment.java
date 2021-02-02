@@ -1,5 +1,6 @@
 package com.kairat.quizapp.ui.fragments.settings;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -12,11 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.kairat.quizapp.App;
 import com.kairat.quizapp.R;
+import com.kairat.quizapp.databinding.SettingsFragmentBinding;
 
 public class SettingsFragment extends Fragment {
 
     private SettingsViewModel mViewModel;
+    private SettingsFragmentBinding binding;
 
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
@@ -25,7 +29,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.settings_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.settings_fragment, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -35,4 +40,9 @@ public class SettingsFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.clearHistory.setOnClickListener(v -> App.getDataBase().quizDao().clearHistory());
+    }
 }

@@ -40,14 +40,15 @@ public class ResultActivity extends AppCompatActivity {
                 result.setCorrectAnswers(correctAnswersCount);
                 result.setDifficulty(difficulty);
                 result.setCreatedAt(System.currentTimeMillis());
-                result.setResult((int) getResultPercent(correctAnswersCount, amount));
-                App.getDataBse().quizDao().addResult(result);
+                result.setResult(getResultPercent(correctAnswersCount, amount));
+                App.getDataBase().quizDao().addResult(result);
+                finish();
             }
         });
     }
 
-    private double getResultPercent(int correctAnswersCount, int amount){
-        double result = correctAnswersCount/amount;
-        return result*100;
+    private int getResultPercent(int correctAnswersCount, int amount){
+        int result = (correctAnswersCount*100)/(amount*100);
+        return result;
     }
 }

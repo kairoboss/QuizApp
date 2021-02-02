@@ -74,21 +74,43 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
             binding.firstVar.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.firstVar, binding.getRoot().getContext(), 0);
+                binding.secondVar.setEnabled(false);
+                binding.thirdVar.setEnabled(false);
+                binding.fourthVar.setEnabled(false);
+                binding.btnTrue.setEnabled(false);
+                binding.btnFalse.setEnabled(false);
             });
             binding.secondVar.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.secondVar, binding.getRoot().getContext(), 1);
+                binding.firstVar.setEnabled(false);
+                binding.thirdVar.setEnabled(false);
+                binding.fourthVar.setEnabled(false);
+                binding.btnTrue.setEnabled(false);
+                binding.btnFalse.setEnabled(false);
             });
             binding.thirdVar.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.thirdVar, binding.getRoot().getContext(), 2);
+                binding.firstVar.setEnabled(false);
+                binding.secondVar.setEnabled(false);
+                binding.fourthVar.setEnabled(false);
+                binding.btnTrue.setEnabled(false);
+                binding.btnFalse.setEnabled(false);
             });
             binding.fourthVar.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.fourthVar, binding.getRoot().getContext(), 3);
+                binding.firstVar.setEnabled(false);
+                binding.secondVar.setEnabled(false);
+                binding.thirdVar.setEnabled(false);
+                binding.btnTrue.setEnabled(false);
+                binding.btnFalse.setEnabled(false);
             });
             binding.btnTrue.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.btnTrue, binding.getRoot().getContext(), 0);
+                binding.btnFalse.setEnabled(false);
             });
             binding.btnFalse.setOnClickListener(v -> {
                 compareCorrectAnswer(q, binding.btnFalse, binding.getRoot().getContext(), 1);
+                binding.btnTrue.setEnabled(false);
             });
         }
 
@@ -125,14 +147,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         public void setDefaultViewHolderState(Question question) {
             if (question.isAnswerClicked()) {
                 checkClickedAnswer(question, binding.getRoot().getContext());
-
             } else {
                 binding.firstVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.firstVar.setEnabled(true);
                 binding.secondVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.secondVar.setEnabled(true);
                 binding.thirdVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.thirdVar.setEnabled(true);
                 binding.fourthVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.fourthVar.setEnabled(true);
                 binding.btnTrue.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.btnTrue.setEnabled(true);
                 binding.btnFalse.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(binding.getRoot().getContext(), R.color.white)));
+                binding.btnFalse.setEnabled(true);
             }
         }
 
@@ -142,34 +169,42 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
                     if (question.getCorrectAnswer().equals(binding.firstVar.getText())) {
                         binding.firstVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
                         binding.btnTrue.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                        break;
                     } else{
                         binding.firstVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
-                    binding.btnTrue.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));}
+                        binding.btnTrue.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
+                    }
+                    binding.firstVar.setEnabled(false);
+                    binding.btnTrue.setEnabled(false);
                     break;
                 case (1):
                     if (question.getCorrectAnswer().equals(binding.secondVar.getText())) {
                         binding.secondVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
                         binding.btnFalse.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                        break;
                     } else{
+                        binding.secondVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
                         binding.btnFalse.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
-                    binding.secondVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));}
+
+                    }
+                    binding.secondVar.setEnabled(false);
+                    binding.btnFalse.setEnabled(false);
                     break;
                 case (2):
                     if (question.getCorrectAnswer().equals(binding.thirdVar.getText())) {
                         binding.thirdVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                        break;
-                    } else
+                    } else {
                         binding.thirdVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
+                    }
+                    binding.thirdVar.setEnabled(false);
                     break;
                 case (3):
                     if (question.getCorrectAnswer().equals(binding.fourthVar.getText())) {
                         binding.fourthVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green)));
-                        break;
-                    } else
+                    } else {
                         binding.fourthVar.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.red)));
+                    }
+                    binding.fourthVar.setEnabled(false);
                     break;
+
 
             }
 
