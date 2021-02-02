@@ -50,9 +50,13 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
 
     private void setUpRecyclerView() {
         QuizAdapter adapter = new QuizAdapter(this);
-        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false){
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+        };
         binding.quizRecycler.setLayoutManager(manager);
-        binding.quizRecycler.setNestedScrollingEnabled(false);
         binding.quizRecycler.setAdapter(adapter);
        viewModel.loadQuestions(amount, category, difficulty.toLowerCase()).observe(this, adapter::addList);
        binding.questionsCount.setText("/"+ amount);
@@ -85,7 +89,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
     private void scrollOnClick(QuizAdapter adapter, int pos) {
             if (pos < (adapter.getItemCount() - 1)) {
                 binding.quizProgressBar.setProgress(pos+2);
-                binding.quizRecycler.smoothScrollToPosition(pos + 1);
+                binding.quizRecycler.scrollToPosition(pos + 1);
                 binding.progressBarValue.setText(String.valueOf(pos + 2));
             }
 
