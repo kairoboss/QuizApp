@@ -116,7 +116,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
         public void compareCorrectAnswer(Question question, Button button, Context context, int answerPosition) {
             if (button.getText().equals(question.getCorrectAnswer())) {
-                new CountDownTimer(3000, 1000) {
+                new CountDownTimer(1000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.blue)));
@@ -129,7 +129,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
                 }.start();
             } else {
-                new CountDownTimer(3000, 1000) {
+                new CountDownTimer(1000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                         button.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.blue)));

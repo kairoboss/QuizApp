@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.kairat.quizapp.R;
 import com.kairat.quizapp.data.models.Question;
@@ -66,13 +68,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(binding.quizRecycler);
         viewModel.currentQuestionPosition.observe(this, integer -> scrollOnClick(adapter, integer));
-        binding.skipBtn.setOnClickListener(v -> scrollOnClick(adapter, manager.findLastCompletelyVisibleItemPosition()));
-        binding.quizBackArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollOnBack(manager.findLastCompletelyVisibleItemPosition());
-            }
-        });
+        binding.skipBtn.setOnClickListener(v -> viewModel.onSkipClick(manager.findLastCompletelyVisibleItemPosition()-1));
         viewModel.finishLiveData.observe(this, this::startResultActivity);
     }
 
@@ -96,22 +92,14 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnCli
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    private void scrollOnBack(int pos) {
-        if (pos > 0) {
-            binding.quizProgressBar.setProgress(pos-2);
-            binding.quizRecycler.smoothScrollToPosition(pos - 1);
-            binding.progressBarValue.setText(String.valueOf(pos - 2));
-        }
-    }
 
     @Override
     public void onVariantClick(int questionPosition, int answerPosition) {
         viewModel.onVariantClick(questionPosition, answerPosition);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.kairat.quizapp.App;
 import com.kairat.quizapp.R;
@@ -43,6 +44,9 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.clearHistory.setOnClickListener(v -> App.getDataBase().quizDao().clearHistory());
+        binding.clearHistory.setOnClickListener(v -> {
+            App.getDataBase().quizDao().deleteAll();
+            Toast.makeText(getContext(), "History was cleared successfully", Toast.LENGTH_LONG).show();
+        });
     }
 }

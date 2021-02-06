@@ -21,6 +21,12 @@ import java.util.List;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
 
     private List<Result> results = new ArrayList<>();
+    private OnHistoryClick onHistoryClick;
+
+    public HistoryAdapter(OnHistoryClick onHistoryClick) {
+        this.onHistoryClick = onHistoryClick;
+    }
+
     @NonNull
     @Override
     public HistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +49,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         notifyDataSetChanged();
     }
 
+    public Result getItem(int pos) {
+        return results.get(pos);
+    }
+
+    public void deleteItem(int pos) {
+        results.remove(pos);
+        notifyDataSetChanged();
+    }
+
     class HistoryViewHolder extends RecyclerView.ViewHolder {
         HistoryItemBinding binding;
         public HistoryViewHolder(@NonNull HistoryItemBinding binding) {
@@ -56,6 +71,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             Date date = new Date(result.getCreatedAt());
             DateFormat df = new SimpleDateFormat("dd-MMM-yyyy HH:ss");
             binding.createdAt.setText(df.format(date));
+            binding.deleteItem.setOnClickListener(v -> onHistoryClick.onDeleteClick(getAdapterPosition()));
         }
+    }
+
+    public interface OnHistoryClick{
+        void onDeleteClick(int pos);
     }
 }

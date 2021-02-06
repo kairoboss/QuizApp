@@ -1,6 +1,7 @@
 package com.kairat.quizapp.ui.fragments.history;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -23,11 +24,11 @@ import com.kairat.quizapp.ui.adapters.HistoryAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends Fragment implements HistoryAdapter.OnHistoryClick {
 
     private HistoryViewModel mViewModel;
     private HistoryFragmentBinding binding;
-    HistoryAdapter historyAdapter = new HistoryAdapter();
+    HistoryAdapter historyAdapter = new HistoryAdapter(this);
 
 
     public static HistoryFragment newInstance() {
@@ -54,12 +55,12 @@ public class HistoryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding.historyRecycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
         binding.historyRecycler.setAdapter(historyAdapter);
-        historyAdapter.addList(App.getDataBase().quizDao().getHistoryList());
+        App.getDataBase().quizDao().getHistoryList().observe(this, results -> historyAdapter.addList(results));
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        historyAdapter.notifyDataSetChanged();
+    public void onDeleteClick(int pos) {
+        App.getDataBase().quizDao().delete(historyAdapter.getItem(pos));
+        historyAdapter.deleteItem(pos);
     }
 }

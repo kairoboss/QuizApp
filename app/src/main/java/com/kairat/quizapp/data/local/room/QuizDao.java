@@ -1,5 +1,6 @@
 package com.kairat.quizapp.data.local.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,8 +22,8 @@ public interface QuizDao {
     void delete(Result result);
 
     @Query("DELETE FROM resultTable")
-    void clearHistory();
+    void deleteAll();
 
     @Query("SELECT * FROM resultTable")
-    List<Result> getHistoryList();
+    LiveData<List<Result>> getHistoryList();
 }

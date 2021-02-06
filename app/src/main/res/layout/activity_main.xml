@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/white"
+        style="@style/QuizToolbar"
         app:menu="@menu/toolbar_menu"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

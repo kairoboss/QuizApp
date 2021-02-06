@@ -62,6 +62,10 @@ public class QuizViewModel extends ViewModel {
         finishLiveData.setValue(correctAnswersCount);
     }
 
+    public void onBackClick(){
+        currentQuestionPosition.setValue(currentQuestionPosition.getValue()-1);
+    }
+
 
     public void onVariantClick(int questionPosition, int answerPosition){
         if (questions == null){
@@ -77,7 +81,7 @@ public class QuizViewModel extends ViewModel {
             correctAnswersCount = correctAnswersCount+1;
         }
         questions.setValue(questionList);
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
